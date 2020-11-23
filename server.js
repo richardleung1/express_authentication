@@ -22,8 +22,20 @@ const sessionObject = {
 
 app.use(session(sessionObject));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+})
+
 app.get('/', (req, res) => {
-  res.render('index');
+  console.log(res.locals.alerts)
+  res.render('index', { alerts: res.locals.alerts f});
 });
 
 app.get('/profile', (req, res) => {
