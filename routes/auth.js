@@ -27,13 +27,14 @@ router.post('/signup', (req, res) => {
     if (created) {
       // if created, success and redirect back to home
       console.log(`${user.name} was created`);
-      
+      // Flash Message
       const successObject = {
         successRedirect: '/',
         successFlash: 'Account created and logging in...'
       }
       passport.authenticate('local', successObject)(req, res);
     } else {
+      // Email already exists
       req.flash('error', 'Email already exists...')
       res.redirect('/auth/signup');
     }
