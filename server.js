@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   console.log(res.locals.alerts)
-  res.render('index', { alerts: res.locals.alerts f});
+  res.render('index', { alerts: res.locals.alerts });
 });
 
 app.get('/profile', (req, res) => {
